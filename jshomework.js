@@ -38,3 +38,57 @@ function remove() {
     }
 }
 remove()
+
+///codewars question1
+// def count_photos(road):
+//     left = 0
+//     right = 0
+//     period = 0
+//     count = 0
+
+//     for i in road:
+//         if i == '>':
+//             right += 1
+//         elif i == '<':
+//             left += 1
+//             count += period
+//         elif i == '.':
+//             count += right
+//             period += 1
+//     return count
+
+// java version
+
+function countPhotos(road) {
+    function countR([photos, cameras, carsR], road) {
+        return road === '.' ? [photos + carsR, cameras + 1, carsR] :
+            road === '>' ? [photos, cameras, carsR + 1] :
+                [photos, cameras, carsR];
+    }
+    function countL([photos, cameras], road) {
+        return road === '.' ? [photos, cameras + 1] :
+            road === '<' ? [photos + cameras, cameras] :
+                [photos, cameras];
+    }
+    return road.reduce(countR, [0, 0, 0])[0] + road.reduce(countL, [0, 0])[0];
+}
+
+///codewars question2
+// def odd_or_even(arr):
+//     sum = 0
+//     for num in arr:
+//         sum += num
+//     if sum % 2 == 0:
+//         return "even"
+//     else:
+//         return "odd"
+
+function oddOrEven(array) {
+    return array.reduce(function (sum, item) {
+        return sum + item
+    }, 0) % 2 == 0 ? 'even' : 'odd';
+}
+
+console.log(oddOrEven([1, 2]));
+console.log(oddOrEven([1, 3]));
+console.log(oddOrEven([]));
